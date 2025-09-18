@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="../css/site.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #00b4d8, #0078d7);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .register-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+            .register-container h2 {
+                margin-bottom: 1.5rem;
+                color: #0078d7;
+            }
+
+            .register-container input,
+            .register-container select {
+                width: 100%;
+                padding: 0.8rem;
+                margin: 0.5rem 0;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            .register-container button {
+                width: 100%;
+                padding: 0.9rem;
+                margin-top: 1rem;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+        .primary-btn {
+            background: #0078d7;
+            color: white;
+        }
+
+            .primary-btn:hover {
+                background: #005a9e;
+            }
+
+        .secondary-btn {
+            background: #e0e0e0;
+            color: #333;
+            margin-top: 0.8rem;
+        }
+
+            .secondary-btn:hover {
+                background: #c7c7c7;
+            }
+
+        #message {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Create Account</h2>
+        <form id="register-form" onsubmit="registerUser(event)">
+            <input type="text" id="username" placeholder="Enter username" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <select id="role">
+                <option value="Standard User">Standard User</option>
+                <option value="Administrator">Administrator</option>
+            </select>
+            <button type="submit" class="primary-btn">Register</button>
+        </form>
+        <div id="message"></div>
+
+        <!-- 👇 Back to Login Button -->
+        <button class="secondary-btn" onclick="window.location.href='index.html'">
+            Already have an account? Login
+        </button>
+    </div>
+
+    <!-- ✅ Load your own JS -->
+    <script src="../js/register.js"></script>
+</body>
+</html>
