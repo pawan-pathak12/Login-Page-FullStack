@@ -1,17 +1,39 @@
-﻿// Attach event listener to form submit
-document.getElementById("submit").addEventListener("click", login);
+﻿// Toggle password visibility
+document.querySelector(".toggle-btn").addEventListener("click", function () {
+    const passwordInput = document.getElementById("password");
+    if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        this.textContent = "🙈";
+    } else {
+        passwordInput.type = "password";
+        this.textContent = "👁";
+    }
+});
 
-async function login(event) {
-    event.preventDefault(); // stop form refresh
+// Handle login form submit
+document.getElementById("loginForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
 
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const message = document.getElementById("message");
 
-    // ✅ FIX: point to the message div, not the submit button
-    const messageDiv = document.getElementById("message");
+    // Basic validation
+    if (email === "" || password === "") {
+        message.textContent = "⚠️ Please fill in all fields.";
+        message.style.color = "red";
+        return;
+    }
+
+    if (!validateEmail(email)) {
+        message.textContent = "⚠️ Please enter a valid email address.";
+        message.style.color = "red";
+        return;
+    }
 
     try {
-        const response = await fetch("/api/Login/Login", {
+        // Call your API (adjust URL as needed)
+        const response = await fetch("/api/login/Login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
@@ -19,21 +41,25 @@ async function login(event) {
 
         const result = await response.json();
 
-        if (result.success) {
-            localStorage.setItem("email", result.email);
-            window.location.href = result.redirectUrl;
+        if (response.ok) {
+            message.style.color = "green";
+            message.textContent = "✅ Login successful! Redirecting...";
+            setTimeout(() => {
+                window.location.href = result.redirectUrl; // redirect to backend-sent URL
+            }, 800);
         } else {
-            messageDiv.style.color = "red";
-            messageDiv.textContent = result.message || "Login failed!";
+            message.style.color = "red";
+            message.textContent = result.message || "❌ Login failed. Please try again.";
         }
     } catch (error) {
-        console.error("Error during login:", error);
-        messageDiv.style.color = "red";
-        messageDiv.textContent = "Server error";
+        console.error("Login error:", error);
+        message.style.color = "red";
+        message.textContent = "⚠️ Something went wrong. Try again later.";
     }
-}
+});
 
-function togglePassword() {
-    const pwd = document.getElementById("password");
-    pwd.type = pwd.type === "password" ? "text" : "password";
+// Simple email validation
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
 }

@@ -1,147 +1,143 @@
-﻿/* Reset some defaults */
-* {
-    box-sizing: border-box;
+﻿/* General Page Styling */
+body {
     margin: 0;
     padding: 0;
-}
-
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #0078d7, #00b4d8);
-    height: 100vh;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: #f0f2f5;
     display: flex;
-    justify-content: center;
     align-items: center;
-    color: #333;
+    justify-content: center;
+    height: 100vh;
 }
 
-/* Page wrapper */
+/* Container */
 .page {
-    width: 850px;
-    max-width: 95%;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-    display: flex;
-    overflow: hidden;
-    transition: transform 0.2s ease-in-out;
-}
-
-    .page:hover {
-        transform: translateY(-4px);
-    }
-
-/* Container split */
-.container {
-    display: flex;
     width: 100%;
+    max-width: 900px;
+    background: #fff;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
 }
 
-/* Left panel */
+/* Left Panel */
 .left {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    padding: 60px 40px;
     flex: 1;
-    background: #f9f9f9;
-    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
 }
 
     .left .login {
-        font-size: 2.2rem;
-        font-weight: 700;
-        color: #0078d7;
-        margin-bottom: 1rem;
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 15px;
     }
 
     .left .eula {
-        font-size: 0.95rem;
-        color: #666;
-        text-align: center;
-        line-height: 1.5;
+        font-size: 15px;
+        opacity: 0.9;
     }
 
-/* Right panel */
+/* Right Panel */
 .right {
-    flex: 2;
-    padding: 2.5rem;
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     position: relative;
-    background: #fff;
 }
 
     .right svg {
         position: absolute;
         top: 0;
-        left: 0;
+        right: 0;
         width: 100%;
         height: auto;
-        opacity: 0.08;
-        pointer-events: none;
+        opacity: 0.05;
     }
 
 /* Form */
-form {
+.form {
     position: relative;
-    z-index: 1;
+    z-index: 2;
+}
+
+.input-group {
+    margin-bottom: 20px;
     display: flex;
     flex-direction: column;
 }
 
-    form label {
-        margin-top: 1rem;
-        font-weight: 600;
-        color: #444;
+    .input-group label {
+        font-size: 14px;
+        margin-bottom: 6px;
+        color: #333;
     }
 
-    form input[type="email"],
-    form input[type="password"] {
-        padding: 0.9rem;
+    .input-group input {
+        padding: 12px;
+        font-size: 15px;
         border: 1px solid #ccc;
-        border-radius: 6px;
-        margin-top: 0.5rem;
-        font-size: 1rem;
-        transition: border-color 0.2s;
+        border-radius: 8px;
+        outline: none;
+        transition: border 0.3s ease;
     }
 
-        form input[type="email"]:focus,
-        form input[type="password"]:focus {
-            border-color: #0078d7;
-            outline: none;
+        .input-group input:focus {
+            border-color: #4facfe;
         }
 
-    /* Submit button */
-    form input[type="submit"] {
-        margin-top: 1.8rem;
-        padding: 0.9rem;
-        border: none;
-        border-radius: 6px;
-        background: #0078d7;
-        color: #fff;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: background 0.3s ease;
+/* Password field with toggle */
+.password-group {
+    position: relative;
+}
+
+.toggle-btn {
+    position: absolute;
+    right: 10px;
+    top: 36px;
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Submit Button */
+#submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    #submit:hover {
+        opacity: 0.9;
     }
-
-        form input[type="submit"]:hover {
-            background: #005a9e;
-        }
-
-        form input[type="submit"]:active {
-            background: #004578;
-        }
 
 /* Message */
 #message {
-    margin-top: 1rem;
-    font-weight: bold;
+    margin-top: 12px;
+    font-size: 14px;
+    color: red;
+    min-height: 18px;
     text-align: center;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
-    .container {
+    .page {
         flex-direction: column;
     }
 
@@ -151,10 +147,6 @@ form {
     }
 
     .left {
-        padding: 1.5rem;
-    }
-
-    .right {
-        padding: 1.5rem;
+        text-align: center;
     }
 }
