@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/site.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0078d7, #00b4d8);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+            width: 320px;
+            text-align: center;
+        }
+
+            .login-container h2 {
+                margin-bottom: 1.5rem;
+                color: #0078d7;
+            }
+
+            .login-container input {
+                width: 100%;
+                padding: 0.8rem;
+                margin: 0.5rem 0;
+                border: 1px solid #ccc;
+                border-radius: 6px;
+            }
+
+            .login-container button {
+                width: 100%;
+                padding: 0.9rem;
+                margin-top: 1rem;
+                border: none;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 1rem;
+            }
+
+        .primary-btn {
+            background: #0078d7;
+            color: white;
+        }
+
+            .primary-btn:hover {
+                background: #005a9e;
+            }
+
+        .secondary-btn {
+            background: #e0e0e0;
+            color: #333;
+            margin-top: 0.8rem;
+        }
+
+            .secondary-btn:hover {
+                background: #c7c7c7;
+            }
+
+        #message {
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Login</h2>
+        <form id="login-form" onsubmit="login(event)">
+            <input type="text" id="username" placeholder="Enter username" required>
+            <input type="password" id="password" placeholder="Enter password" required>
+            <label>
+                <input type="checkbox" onclick="togglePassword()"> Show Password
+            </label>
+            <button type="submit" class="primary-btn">Login</button>
+        </form>
+        <div id="message"></div>
+
+        <!-- 👇 New Register Button -->
+        <button class="secondary-btn" onclick="window.location.href='register.html'">
+            Don’t have an account? Register
+        </button>
+    </div>
+
+    <script src="../js/site.js"></script>
+</body>
+</html>
