@@ -22,7 +22,7 @@ namespace LoginDemo.Controllers
         public IActionResult Login([FromBody] LoginRequest request)
         {
             var user = _appDbContext.Users
-                .FirstOrDefault(u => u.Username == request.Username && u.Password == request.Password);
+                .FirstOrDefault(u => u.Email == request.Email && u.Password == request.Password);
 
             if (user == null)
             {
@@ -32,8 +32,8 @@ namespace LoginDemo.Controllers
             return Ok(new
             {
                 success = true,
-                username = user.Username,
-                role = user.Role,
+                username = user.Email,
+                //   role = user.Role,
                 redirectUrl = "/html/dashboard.html"
             });
         }
