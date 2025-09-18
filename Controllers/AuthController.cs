@@ -23,7 +23,7 @@ namespace LoginDemo.Controllers
         public IActionResult Register([FromBody] CreateUserDto createUser)
         {
             var entity = _mapper.Map<User>(createUser);
-            if (_appDbContext.Users.Any(u => u.Username == entity.Username))
+            if (_appDbContext.Users.Any(u => u.Email == entity.Email))
             {
                 return BadRequest(new { success = false, message = "Username already exists" });
             }

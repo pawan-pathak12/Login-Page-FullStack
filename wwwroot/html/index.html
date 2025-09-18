@@ -12,82 +12,141 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
         }
 
-        .login-container {
+        .page {
+            width: 800px;
+            max-width: 95%;
             background: #fff;
-            padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            width: 320px;
-            text-align: center;
+            display: flex;
+            overflow: hidden;
         }
 
-            .login-container h2 {
-                margin-bottom: 1.5rem;
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .left {
+            flex: 1;
+            background: #f5f5f5;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .left .login {
+                font-size: 2rem;
+                font-weight: bold;
                 color: #0078d7;
+                margin-bottom: 1rem;
             }
 
-            .login-container input {
+            .left .eula {
+                font-size: 0.9rem;
+                color: #555;
+                text-align: center;
+            }
+
+        .right {
+            flex: 2;
+            padding: 2rem;
+            position: relative;
+        }
+
+            .right svg {
+                position: absolute;
+                top: 0;
+                left: 0;
                 width: 100%;
+                height: auto;
+                opacity: 0.1;
+            }
+
+        .form {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            margin-top: 2rem;
+        }
+
+            .form label {
+                margin-top: 1rem;
+                font-weight: 600;
+                color: #333;
+            }
+
+            .form input[type="email"],
+            .form input[type="password"] {
                 padding: 0.8rem;
-                margin: 0.5rem 0;
                 border: 1px solid #ccc;
                 border-radius: 6px;
+                margin-top: 0.5rem;
             }
 
-            .login-container button {
-                width: 100%;
+            .form input[type="submit"] {
+                margin-top: 1.5rem;
                 padding: 0.9rem;
-                margin-top: 1rem;
                 border: none;
                 border-radius: 6px;
-                cursor: pointer;
+                background: #0078d7;
+                color: #fff;
                 font-size: 1rem;
+                cursor: pointer;
             }
 
-        .primary-btn {
-            background: #0078d7;
-            color: white;
-        }
-
-            .primary-btn:hover {
-                background: #005a9e;
-            }
-
-        .secondary-btn {
-            background: #e0e0e0;
-            color: #333;
-            margin-top: 0.8rem;
-        }
-
-            .secondary-btn:hover {
-                background: #c7c7c7;
-            }
-
-        #message {
-            margin-top: 1rem;
-            font-weight: bold;
-        }
+                .form input[type="submit"]:hover {
+                    background: #005a9e;
+                }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>Login</h2>
-        <form id="login-form" onsubmit="login(event)">
-            <input type="text" id="username" placeholder="Enter username" required>
-            <input type="password" id="password" placeholder="Enter password" required>
-            <label>
-                <input type="checkbox" onclick="togglePassword()"> Show Password
-            </label>
-            <button type="submit" class="primary-btn">Login</button>
-        </form>
-        <div id="message"></div>
-
-        <!-- 👇 New Register Button -->
-        <button class="secondary-btn" onclick="window.location.href='register.html'">
-            Don’t have an account? Register
-        </button>
+    <div class="page">
+        <div class="container">
+            <div class="left">
+                <div class="login">Login</div>
+                <div class="eula">
+                    By logging in you agree to the ridiculously long terms that you didn't bother to read
+                </div>
+            </div>
+            <div class="right">
+                <svg viewBox="0 0 320 300">
+                    <defs>
+                        <linearGradient id="linearGradient"
+                                        x1="13"
+                                        y1="193.49992"
+                                        x2="307"
+                                        y2="193.49992"
+                                        gradientUnits="userSpaceOnUse">
+                            <stop style="stop-color:#ff00ff;" offset="0" />
+                            <stop style="stop-color:#ff0000;" offset="1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="m 40,120.00016 239.99984,-3.2e-4 c 0,0 24.99263,0.79932 25.00016,35.00016
+                   0.008,34.20084 -25.00016,35 -25.00016,35 h -239.99984
+                   c 0,-0.0205 -25,4.01348 -25,38.5
+                   0,34.48652 25,38.5 25,38.5 h 215
+                   c 0,0 20,-0.99604 20,-25
+                   0,-24.00396 -20,-25 -20,-25 h -190
+                   c 0,0 -20,1.71033 -20,25
+                   0,24.00396 20,25 20,25 h 168.57143" />
+                </svg>
+                <div class="form">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter your password" required>
+                    <input type="submit" id="submit" value="Submit">
+                </div>
+                <div id="message"></div>
+            </div>
+        </div>
     </div>
 
     <script src="../js/site.js"></script>
