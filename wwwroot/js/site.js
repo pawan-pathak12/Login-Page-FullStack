@@ -18,21 +18,8 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const password = document.getElementById("password").value.trim();
     const message = document.getElementById("message");
 
-    // Basic validation
-    if (email === "" || password === "") {
-        message.textContent = "⚠️ Please fill in all fields.";
-        message.style.color = "red";
-        return;
-    }
-
-    if (!validateEmail(email)) {
-        message.textContent = "⚠️ Please enter a valid email address.";
-        message.style.color = "red";
-        return;
-    }
-
     try {
-        // Call your API (adjust URL as needed)
+        // Call your API (adjust URL as needed)\
         const response = await fetch("/api/login/Login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
