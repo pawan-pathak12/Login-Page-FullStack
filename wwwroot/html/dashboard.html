@@ -2,62 +2,160 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="css/site.css">
-    <style>
-        .dashboard-container {
-            max-width: 600px;
-            margin: 5rem auto;
-            padding: 2rem;
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-            .dashboard-container h2 {
-                margin-bottom: 1rem;
-                color: #0078d7;
-            }
-
-            .dashboard-container p {
-                font-size: 1.1rem;
-                margin-bottom: 2rem;
-            }
-
-        .btn {
-            display: inline-block;
-            padding: 0.7rem 1.5rem;
-            margin: 0.5rem;
-            border: none;
-            border-radius: 4px;
-            background: #0078d7;
-            color: white;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-            .btn:hover {
-                background: #005a9e;
-            }
-    </style>
+    <title>Vehicle Management Dashboard</title>
+    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <h2>Welcome to the Dashboard!</h2>
-        <p>You are logged in successfully.</p>
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>🚗 FleetPro</h2>
+                <p>Vehicle Management</p>
+            </div>
 
-        <div>
-            <a href="#" class="btn">View Profile</a>
-            <a href="#" class="btn">Settings</a>
-            <a href="index.html" class="btn">Logout</a>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="overview">
+                    📊 Dashboard
+                </a>
+                <a href="#" class="nav-item" data-section="vehicles">
+                    🚙 Vehicles
+                </a>
+                <a href="#" class="nav-item" data-section="maintenance">
+                    🔧 Maintenance
+                </a>
+                <a href="#" class="nav-item" data-section="reports">
+                    📈 Reports
+                </a>
+                <a href="#" class="nav-item" data-section="drivers">
+                    👥 Drivers
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-info">
+                    <strong id="userName">User</strong>
+                    <span id="userRole">Role</span>
+                </div>
+                <button class="logout-btn" onclick="logout()">🚪 Logout</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="top-bar-left">
+                    <h1 id="sectionTitle">Dashboard Overview</h1>
+                </div>
+                <div class="top-bar-right">
+                    <div class="date-display" id="currentDate"></div>
+                </div>
+            </div>
+
+            <!-- Content Sections -->
+            <div class="content-sections">
+                <!-- Overview Section -->
+                <section id="overview" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">🚙</div>
+                            <div class="stat-info">
+                                <h3>Total Vehicles</h3>
+                                <span class="stat-number" id="totalVehicles">12</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <h3>Available</h3>
+                                <span class="stat-number" id="availableVehicles">8</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🔧</div>
+                            <div class="stat-info">
+                                <h3>In Maintenance</h3>
+                                <span class="stat-number" id="maintenanceVehicles">2</span>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⛽</div>
+                            <div class="stat-info">
+                                <h3>Fuel Cost</h3>
+                                <span class="stat-number">$2,450</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="recent-activity">
+                        <h3>Recent Activity</h3>
+                        <div class="activity-list">
+                            <div class="activity-item">
+                                <span class="activity-icon">🚗</span>
+                                <div class="activity-details">
+                                    <p>Vehicle VH-001 assigned to John Doe</p>
+                                    <small>2 hours ago</small>
+                                </div>
+                            </div>
+                            <div class="activity-item">
+                                <span class="activity-icon">🔧</span>
+                                <div class="activity-details">
+                                    <p>Maintenance scheduled for VH-005</p>
+                                    <small>5 hours ago</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Vehicles Section -->
+                <section id="vehicles" class="content-section">
+                    <div class="section-header">
+                        <h2>Vehicle Fleet</h2>
+                        <button class="btn-primary" onclick="showAddVehicleModal()">+ Add Vehicle</button>
+                    </div>
+                    <div class="vehicles-grid" id="vehiclesGrid">
+                        <!-- Vehicles will be loaded here dynamically -->
+                    </div>
+                </section>
+
+                <!-- Maintenance Section -->
+                <section id="maintenance" class="content-section">
+                    <h2>Maintenance Schedule</h2>
+                    <div class="maintenance-list" id="maintenanceList">
+                        <!-- Maintenance items will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Reports Section -->
+                <section id="reports" class="content-section">
+                    <h2>Reports & Analytics</h2>
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <h3>Fuel Consumption</h3>
+                            <div class="chart-placeholder">Chart will be here</div>
+                        </div>
+                        <div class="report-card">
+                            <h3>Maintenance Costs</h3>
+                            <div class="chart-placeholder">Chart will be here</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Drivers Section -->
+                <section id="drivers" class="content-section">
+                    <h2>Driver Management</h2>
+                    <div class="drivers-list" id="driversList">
+                        <!-- Drivers will be loaded here -->
+                    </div>
+                </section>
+            </div>
         </div>
     </div>
-    <script>const username = localStorage.getItem("username");
-  if (username)
-  {
-    document.querySelector("h2").textContent = `Welcome, ${username}!`;
-  }</script>
+
+    <!-- Modals will be added here -->
+    <script src="../js/dashboard.js"></script>
 </body>
 </html>

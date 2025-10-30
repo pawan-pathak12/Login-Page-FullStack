@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Login Page</title>
+    <title>Vehicle Management System - Login</title>
     <link rel="stylesheet" href="../css/site.css">
 </head>
 <body>
@@ -10,21 +10,20 @@
         <div class="container">
             <!-- Left panel -->
             <div class="left">
-                <div class="login">Welcome Back 👋</div>
+                <div class="login">Vehicle Management System 🚗</div>
                 <div class="eula">
-                    Sign in to continue to your account.<br>
-                    By logging in, you agree to our terms.
+                    Manage your fleet efficiently with our comprehensive vehicle management platform.
+                    Track maintenance, monitor usage, and optimize your operations.
                 </div>
             </div>
-            <h1>welocome to vechile booking System</h1>
-            <h1>Please Login to Continue more</h1>
+
             <!-- Right panel -->
             <div class="right">
                 <svg viewBox="0 0 320 300">
                     <defs>
                         <linearGradient id="linearGradient" x1="13" y1="193.5" x2="307" y2="193.5" gradientUnits="userSpaceOnUse">
-                            <stop style="stop-color:#ff00ff;" offset="0" />
-                            <stop style="stop-color:#ff0000;" offset="1" />
+                            <stop style="stop-color:#0078d7;" offset="0" />
+                            <stop style="stop-color:#00b4d8;" offset="1" />
                         </linearGradient>
                     </defs>
                     <path d="m 40,120 240,0 c 0,0 25,1 25,35 0,34 -25,35 -25,35 h -240 c 0,0 -25,4 -25,39
@@ -33,6 +32,8 @@
                 </svg>
 
                 <form id="loginForm" class="form">
+                    <h2 style="text-align: center; margin-bottom: 20px; color: #333;">Sign In</h2>
+
                     <div class="input-group">
                         <label for="email">Email</label>
                         <input type="email" id="email" placeholder="Enter your email" required>
@@ -43,7 +44,15 @@
                         <input type="password" id="password" placeholder="Enter your password" required>
                         <button type="button" class="toggle-btn" aria-label="Show password">👁</button>
                     </div>
+
                     <input type="submit" id="submit" value="Login">
+
+                    <div style="text-align: center; margin-top: 15px;">
+                        <a href="register.html" style="color: #0078d7; text-decoration: none;">
+                            Don't have an account? Register here
+                        </a>
+                    </div>
+
                     <div id="message"></div>
                 </form>
             </div>

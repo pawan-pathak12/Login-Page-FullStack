@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Register</title>
+    <title>Vehicle Management - Register</title>
     <link rel="stylesheet" href="../css/site.css">
     <style>
         body {
@@ -12,39 +12,52 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin: 0;
         }
 
         .register-container {
             background: #fff;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
-            width: 320px;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            width: 380px;
             text-align: center;
         }
 
             .register-container h2 {
                 margin-bottom: 1.5rem;
                 color: #0078d7;
+                font-size: 1.8rem;
             }
 
             .register-container input,
             .register-container select {
                 width: 100%;
-                padding: 0.8rem;
-                margin: 0.5rem 0;
-                border: 1px solid #ccc;
-                border-radius: 6px;
+                padding: 0.9rem;
+                margin: 0.7rem 0;
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                font-size: 1rem;
+                transition: border 0.3s ease;
+                box-sizing: border-box;
             }
+
+                .register-container input:focus,
+                .register-container select:focus {
+                    border-color: #0078d7;
+                    outline: none;
+                }
 
             .register-container button {
                 width: 100%;
                 padding: 0.9rem;
                 margin-top: 1rem;
                 border: none;
-                border-radius: 6px;
+                border-radius: 8px;
                 cursor: pointer;
                 font-size: 1rem;
+                font-weight: 600;
+                transition: background 0.3s ease;
             }
 
         .primary-btn {
@@ -57,42 +70,61 @@
             }
 
         .secondary-btn {
-            background: #e0e0e0;
+            background: #f8f9fa;
             color: #333;
             margin-top: 0.8rem;
+            border: 1px solid #ddd !important;
         }
 
             .secondary-btn:hover {
-                background: #c7c7c7;
+                background: #e9ecef;
             }
 
         #message {
             margin-top: 1rem;
             font-weight: bold;
+            min-height: 20px;
         }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+            .form-header p {
+                color: #666;
+                margin-top: 0.5rem;
+            }
     </style>
 </head>
 <body>
     <div class="register-container">
-        <h2>Create Account</h2>
+        <div class="form-header">
+            <h2>Join Vehicle Management</h2>
+            <p>Create your account to start managing your fleet</p>
+        </div>
+
         <form id="register-form" onsubmit="registerUser(event)">
-            <input type="text" id="username" placeholder="Enter username" required>
-            <input type="password" id="password" placeholder="Enter password" required>
+            <input type="text" id="username" placeholder="Full Name" required>
+            <input type="email" id="email" placeholder="Email Address" required>
+            <input type="password" id="password" placeholder="Password" required>
             <select id="role">
-                <option value="Standard User">Standard User</option>
+                <option value="">Select Role</option>
+                <option value="Fleet Manager">Fleet Manager</option>
+                <option value="Vehicle Operator">Vehicle Operator</option>
+                <option value="Maintenance Staff">Maintenance Staff</option>
                 <option value="Administrator">Administrator</option>
             </select>
-            <button type="submit" class="primary-btn">Register</button>
+            <button type="submit" class="primary-btn">Create Account</button>
         </form>
+
         <div id="message"></div>
 
-        <!-- 👇 Back to Login Button -->
         <button class="secondary-btn" onclick="window.location.href='index.html'">
-            Already have an account? Login
+            ← Back to Login
         </button>
     </div>
 
-    <!-- ✅ Load your own JS -->
     <script src="../js/register.js"></script>
 </body>
 </html>

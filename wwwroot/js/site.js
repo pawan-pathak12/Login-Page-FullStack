@@ -19,7 +19,6 @@ document.getElementById("loginForm").addEventListener("submit", async function (
     const message = document.getElementById("message");
 
     try {
-        // Call your API (adjust URL as needed)\
         const response = await fetch("/api/login/Login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -31,8 +30,14 @@ document.getElementById("loginForm").addEventListener("submit", async function (
         if (response.ok) {
             message.style.color = "green";
             message.textContent = "✅ Login successful! Redirecting...";
+
+            // Store user info for dashboard
+            localStorage.setItem("userEmail", email);
+            localStorage.setItem("userName", result.username || email.split('@')[0]);
+            localStorage.setItem("userRole", result.role || "User");
+
             setTimeout(() => {
-                window.location.href = result.redirectUrl; // redirect to backend-sent URL
+                window.location.href = "dashboard.html";
             }, 800);
         } else {
             message.style.color = "red";
